@@ -4936,5 +4936,11 @@ export const caffeineData: Array<CaffeineItem> = [
     "fl_oz": "16",
     "totalCaffeine": "200",
     "mg_per_oz": "12.5"
+  },
+  {
+    "name": "Starbucks Short Dark Roast ",
+    "fl_oz": "8",
+    "totalCaffeine": "130",
+    "mg_per_oz": "16.25"
   }
 ]

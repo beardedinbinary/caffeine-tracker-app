@@ -1,0 +1,28 @@
+{
+     "name": "Steve Balistreri",
+     "age": "30",
+     "dob": "09/03/1987",
+     "weight": 270,
+     "units": "Emperial",
+     "dailyLimit": 450,
+     "mode": "Strategic",
+     "schedule": {
+          "sunday": 30,
+          "monday": 450,
+          "tuesday": 445,
+          "wednesday": 250,
+          "thursday": 200,
+          "friday": 30,
+          "saturday": {
+               "total": 30,
+               "alerts": [
+                    {
+                         "10am": 15
+                    },
+                    {
+                         "3:30pm": 15
+                    }
+               ]
+          }
+     }
+}

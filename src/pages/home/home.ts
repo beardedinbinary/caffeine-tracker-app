@@ -3,10 +3,11 @@ import { NavController } from 'ionic-angular';
 
 import * as Fuse from 'fuse.js';
 import * as _ from 'lodash';
-import { caffeineData, CaffeineItem } from '../../caffeineData';
+import { caffeineData, CaffeineItem } from '../../models/caffeineData';
+import * as moment from 'moment';
 
 interface CaffeineEntry {
-  timestamp: number;
+  timestamp: moment.RelativeTimeKey;
   item: CaffeineItem;
 }
 
@@ -22,9 +23,13 @@ interface JournalDay {
 export class HomePage {
   searchResults: Array<any>;
   todaysEntries: Array<CaffeineEntry> = [];
-  todaysTotal: number;
+  todaysTotal: number = 0;
+  todaysDate: String;
 
-  constructor(public navCtrl: NavController) {
+  constructor(
+    public navCtrl: NavController,
+  ) {
+    this.todaysDate = new Date().toISOString();
 
   }
 
@@ -46,22 +51,17 @@ export class HomePage {
 
   selectItem(item: CaffeineItem) {
     const newEntry: CaffeineEntry = {
-      timestamp: Date.now(),
+      timestamp: moment().format('h:mm a'),
       item
     }
+    // adds entry to our day
     this.todaysEntries.push(newEntry);
+
+    // clears the search results
     this.searchResults = [];
-    this.setTotalIntake(this.todaysEntries);
-    console.log(this.todaysTotal)
+
+    // update the total
+    this.todaysTotal = Number(this.todaysTotal) + Number(item.totalCaffeine);
   }
 
-  setTotalIntake(entries: Array<CaffeineEntry>) {
-    let total: number = _.map(entries, (entry) => {
-      return _.reduce(entry.item.totalCaffeine, (prev, next) => {
-        console.log(Number(prev) + Number(next));
-        return prev + next
-      })
-    })
-    console.log(;
-  }
 }

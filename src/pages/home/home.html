@@ -6,7 +6,10 @@
 
         <ion-card-content>
             <ion-item>
-                <h1>250mg</h1>
+                <ion-datetime displayFormat="MMMM, DD YYYY" pickerFormat="MMMM, DD YYYY" [(ngModel)]="todaysDate"></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <h1>{{ todaysTotal }}mg</h1>
                 <hr/>
                 <h1 class="red">450mg</h1>
             </ion-item>
@@ -33,7 +36,7 @@
             <ion-list>
                 <ion-card *ngFor="let entry of todaysEntries">
                     <ion-card-header>
-                        <h1>{{(entry.timestamp | amFromUnix)| amDateFormat: 'hh:mmA'}}</h1>
+                        <h1>{{ entry.timestamp }}</h1>
                     </ion-card-header>
                     <ion-card-content>
                         <h2>{{entry.item.name}} -
